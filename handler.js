@@ -4,7 +4,7 @@ const AWS = require('aws-sdk');
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 const uuid = require('uuid');
 
-module.exports.postprocess = (event,callback) => {
+module.exports.postprocess = (event) => {
   event.Records.forEach((record) => {
     const filename = record.s3.object.key;
     const filesize = record.s3.object.size;
@@ -19,16 +19,16 @@ module.exports.postprocess = (event,callback) => {
   dynamodb.put(params, function(err,data){
 
     if(err){
-      callback(err, "error occured")
+      console.log(err)
     }
     else{
-      callback(null, data)
+      console.log("Success");
     }
   })
   });
 };
 
-module.exports.remove = (event,callback) => {
+module.exports.remove = (event) => {
   event.Records.forEach((record) => {
     const filename = record.s3.object.key;
     const filesize = record.s3.object.size;
@@ -43,10 +43,10 @@ module.exports.remove = (event,callback) => {
   dynamodb.put(params, function(err,data){
 
     if(err){
-      callback(err, "error occured")
+      console.log(err);
     }
     else{
-      callback(null, data)
+      console.log("Success");
     }
   })
   });
