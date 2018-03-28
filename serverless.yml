@@ -8,6 +8,11 @@ custom:
 provider:
   name: aws
   runtime: nodejs4.3
+  environment:
+     ACCOUNT_SID: 'ssid'
+     AUTH_TOKEN: 'auth token'
+     PHONE_NUMBER: 'phone number'
+     RECEIVER_NO: 'receiver phone number'
   iamRoleStatements:
     - Effect: Allow
       Action:
